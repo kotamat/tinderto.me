@@ -1,0 +1,27 @@
+{
+  "name": "tinderto.me",
+  "version": "0.0.0",
+  "homepage": "https://github.com/kotamat/tinderto.me",
+  "authors": [
+    "kotamat"
+  ],
+  "description": "this is like tinder, but to you",
+  "keywords": [
+    "tinder",
+    "masturbation",
+    "flux",
+    "react"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "public/libs",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "react": "~0.12.2"
+  }
+}
