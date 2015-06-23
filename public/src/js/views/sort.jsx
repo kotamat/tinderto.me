@@ -6,11 +6,15 @@ var UsersStore = require('../stores/users');
 function getStateFromUsers(){
 	return UsersStore.getAll();
 }
+function getCurrentUserID(){
+	return UsersStore.getCurrentUserID();
+}
 var Sort = React.createClass({
 	getInitialState: function () {
 		SortActions.initUsers();
     return {
-      users: getStateFromUsers()
+      users: getStateFromUsers(),
+			currentUser: getCurrentUserID()
     }
   },
   componentWillMount: function(){
@@ -24,12 +28,19 @@ var Sort = React.createClass({
     });
   },
   submit: function(result) {
-    SortActions.submit(result);
+    SortActions.submit(this.state.currentUser, result);
+		this.setState({
+			currentUser: getCurrentUserID()
+		})
   },
   render: function(){
     var cards = this.state.users.map(function(user,index){
+			var classes = 'card';
+			if(index != getCurrentUserID()){
+				classes += ' hide ' + user.status;
+			}
       return (
-        <div>
+        <div className={ classes }>
           {user.name}<br />
         <img src={user.img} alt={user.name} /><br />
         </div>
@@ -41,8 +52,8 @@ var Sort = React.createClass({
           {cards}
         </div>
         <div id="submit-area">
-          <a onClick={ this.submit.bind(this, 'no') } id="submit-no">no</a>
-          <a onClick={ this.submit.bind(this, 'ok') } id="submit-ok">ok</a>
+          <a onClick={ this.submit.bind(this, 'dislike') } id="submit-dislike">dislike</a>
+          <a onClick={ this.submit.bind(this, 'like') } id="submit-like">like</a>
         </div>
       </div>
     )

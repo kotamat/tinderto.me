@@ -3,12 +3,12 @@ var Matches = require('./views/matches');
 var Messages = require('./views/messages');
 
 var Body = React.createClass({
-	getInitialState () {
+	getInitialState: function() {
     return {
       route: window.location.hash.substr(1)
     };
   },
-  componentDidMount () {
+  componentDidMount: function() {
     window.addEventListener('hashchange', function () {
       this.setState({
         route: window.location.hash.substr(1)

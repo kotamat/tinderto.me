@@ -1,3 +1,36 @@
 .test{
   display:none;
 }
+.hide{
+  transition:all linear 0.3s;
+}
+.like.hide{
+  transform: translateX(100%) translateY(10%) rotate(60deg);
+}
+.dislike.hide{
+  transform: translateX(-100%) translateY(10%) rotate(-60deg);
+}
+/*
+.animate-like.ng-leave,.animate-dislike.ng-leave,.animate-partial{
+  transition:all linear 0.3s;
+}
+.animate-like.ng-leave {
+  transform: translateX(0px) rotate(0deg);
+}
+.animate-partial.animate-like-partial {
+  transform: translateX(10%) rotate(5deg);
+}
+.animate-like.ng-leave.ng-leave-active {
+  transform: translateX(100%) rotate(60deg);
+}
+.animate-dislike.ng-leave {
+  transform: translateX(0px) rotate(0deg);
+}
+.animate-partial.animate-dislike-partial {
+  transform: translateX(-10%) rotate(-5deg);
+}
+.animate-dislike.ng-leave.ng-leave-active {
+  transform: translateX(100%) rotate(60deg);
+}
+
+*/
