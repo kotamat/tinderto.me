@@ -8,9 +8,20 @@ function getStateFromUsers(){
 }
 var Sort = React.createClass({
 	getInitialState: function () {
+		SortActions.initUsers();
     return {
       users: getStateFromUsers()
     }
+  },
+  componentWillMount: function(){
+    UsersStore.addChangeListener(this.onStoreChange);
+  },
+  componentWillUnmount: function(){
+  },
+  onStoreChange: function(){
+    this.setState({
+      users: getStateFromUsers()
+    });
   },
   submit: function(result) {
     SortActions.submit(result);

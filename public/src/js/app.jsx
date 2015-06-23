@@ -22,10 +22,10 @@ var Body = React.createClass({
 		switch (true){
 			case /\/messages/.test(route):
 			Child = Messages;
+			viewID = route.match(/\/messages\/(\d+)/)[1];
 			break;
 			case /\/matches/.test(route):
 			Child = Matches;
-			id = route.match(/\/matches(\d+)/);
 			break;
 			default:
 			Child = Sort;

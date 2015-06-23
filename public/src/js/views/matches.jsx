@@ -12,7 +12,6 @@ var Matches = React.createClass({
   },
   render: function(){
     var messages = this.state.messages.map(function(message, index){
-      console.log(index);
       var user = UsersStore.getByUserID(index);
       return (
         <li>

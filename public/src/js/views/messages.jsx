@@ -1,6 +1,8 @@
 var UsersStore = require('../stores/users');
 var MessagesStore = require('../stores/messages');
 
+var Reply = require('../views/partical/reply');
+
 function getStateFromMessagesByID(viewID){
   return MessagesStore.getChatByUserID(viewID);
 }
@@ -10,10 +12,19 @@ var Messages = React.createClass({
       messages: getStateFromMessagesByID(this.props.viewID).messages
     }
   },
+  componentWillMount: function(){
+    MessagesStore.addChangeListener(this.onStoreChange);
+  },
+  componentWillUnmount: function(){
+    //MessagesStore.removeChangeListener(this.onStoreChange);
+  },
+  onStoreChange: function(){
+    this.setState({
+      messages: getStateFromMessagesByID(this.props.viewID).messages
+    });
+  },
   render: function(){
-    console.log(this.state.messages);
     var messages = this.state.messages.map(function(message, index){
-      console.log(index);
       var user = UsersStore.getByUserID(index);
       return (
         <li key={ index }>
@@ -22,7 +33,10 @@ var Messages = React.createClass({
       )
     });
     return (
-      <ul>{messages}</ul>
+      <div>
+        <ul>{messages}</ul>
+        <Reply chatID={this.props.viewID} />
+      </div>
     );
   }
 });

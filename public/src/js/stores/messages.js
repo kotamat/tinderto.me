@@ -39,6 +39,18 @@ messagesStore.dispatchToken = Dispatcher.register(function(payload){
       messages.push({
         messages:[]
       });
+    },
+    sendMessage: function(payload){
+      var chatID = payload.action.chatID;
+      var message = payload.action.message;
+
+      messages[chatID].messages.push({
+        contents: message,
+        timestamp: +new Date()
+      });
+      console.log(chatID);
+
+      messagesStore.emit('change');
     }
   };
   actions[payload.action.type] && actions[payload.action.type](payload);
