@@ -48,7 +48,6 @@ messagesStore.dispatchToken = Dispatcher.register(function(payload){
         contents: message,
         timestamp: +new Date()
       });
-      console.log(chatID);
 
       messagesStore.emit('change');
     }

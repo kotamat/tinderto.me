@@ -1,4 +1,6 @@
 var SortActions = require('../actions/sorts');
+var Hammer = require('react-hammerjs');
+var options = {touchAction:true, recognizers:{tap:{time:600, threshold:100}}};
 
 var MessagesStore = require('../stores/messages');
 var UsersStore = require('../stores/users');
@@ -18,6 +20,7 @@ var Sort = React.createClass({
     }
   },
   componentWillMount: function(){
+		React.initializeTouchEvents(true);
     UsersStore.addChangeListener(this.onStoreChange);
   },
   componentWillUnmount: function(){
@@ -27,6 +30,12 @@ var Sort = React.createClass({
       users: getStateFromUsers()
     });
   },
+	handleTouchStart: function(e){
+		alert(e);
+	},
+	handleDragOver: function(e){
+		console.log(e);
+	},
   submit: function(result) {
     SortActions.submit(this.state.currentUser, result);
 		this.setState({
@@ -40,10 +49,11 @@ var Sort = React.createClass({
 				classes += ' hide ' + user.status;
 			}
       return (
-        <div className={ classes }>
+        <Hammer component="div" onTap={this.handleTouchStart} onSwipe={this.handleTouchStart} key={ index } className={ classes }>
+					<a onClick={ this.handleDragOver } >drag test</a>
           {user.name}<br />
-        <img src={user.img} alt={user.name} /><br />
-        </div>
+				<img onTouchStart={ this.handleTouchStart } onMouseDown={this.handleTouchStart} onCleck={ this.handleDragOver } src={user.img} alt={user.name} /><br />
+        </Hammer>
       );
     });
     return (
@@ -52,8 +62,8 @@ var Sort = React.createClass({
           {cards}
         </div>
         <div id="submit-area">
-          <a onClick={ this.submit.bind(this, 'dislike') } id="submit-dislike">dislike</a>
-          <a onClick={ this.submit.bind(this, 'like') } id="submit-like">like</a>
+          <a onClick={ this.submit.bind(this, 'dislike') } onTouchEnd={ this.submit.bind(this, 'dislike') } id="submit-dislike">dislike</a>
+          <a onClick={ this.submit.bind(this, 'like') } onTouchEnd={ this.submit.bind(this, 'like') } id="submit-like">like</a>
         </div>
       </div>
     )

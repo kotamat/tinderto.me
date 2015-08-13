@@ -23,7 +23,7 @@ var Reply = React.createClass({
   },
   render: function(){
     return (
-      <input type="text" onChange={ this.updateValue } onKeyDown={this.onKeyDown} />
+      <input type="text" value={ this.state.value } onChange={ this.updateValue } onKeyDown={this.onKeyDown} />
     );
   }
 });

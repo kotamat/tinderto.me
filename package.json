@@ -41,6 +41,7 @@
   },
   "dependencies": {
     "flux": "^2.0.1",
-    "object-assign": "^2.0.0"
+    "object-assign": "^2.0.0",
+    "react-hammerjs": "^0.2.2"
   }
 }
