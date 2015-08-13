@@ -4,7 +4,9 @@
   "description": "this is like tinder, but to you",
   "main": "./",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app",
+    "postinstall": "gulp default"
   },
   "repository": {
     "type": "git",
